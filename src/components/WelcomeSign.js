@@ -2,7 +2,7 @@ import React, {Component} from "react";
 class WelcomeSign extends Component {
   render(){
     return(
-      <h1>Welcome to Walkthrough</h1>
+      <h1 className='title'>Welcome to Walk-Thru</h1>
     )
   }
 }
