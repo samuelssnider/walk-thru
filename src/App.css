@@ -63,8 +63,11 @@
 }
 
 .home-walk-thru{
-  margin-left: 3em
+  margin-left: 3em;
+  width: 70%;
 }
+
+
 
 table, th, tr, td{
   border: 1px solid black;
@@ -133,4 +136,11 @@ span.email{
   background-image: url("data/staircase.jpg");
   background-size: 100%;
   background-repeat: no-repeat;
+}
+
+.add-wt-image {
+  display: inline-block; 
+  float: right;
+  margin-right: 100px;
+  width: 10%;
 }
