@@ -1,4 +1,7 @@
 import React, {Component} from "react";
+import three from '../requests/three_wt'
+
+three()
 class HomeWT extends Component {
   render(){
     return(
@@ -6,6 +9,7 @@ class HomeWT extends Component {
         <table className="home-walk-thru">
           <tbody>
             <tr>
+              <th className="image-column"/>
               <th>Name</th>
               <th>Description</th>
             </tr>
