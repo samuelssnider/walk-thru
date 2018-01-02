@@ -34,6 +34,14 @@
 .top-nav-bar{
   height: 3em;
   background-color: #b3ffff;
+  border-bottom: 4px groove white;
+}
+
+.bottom-nav-bar{
+  float: bottom;
+  height: 3em;
+  background-color: #b3ffff;
+  border-top: 4px ridge white;
 }
 
 .left-justify{
@@ -70,7 +78,7 @@ table, th, tr, td{
 }
 
 .image-display{
-  height: 120px;
+  height: 100px;
   /* width: 200px; */
 }
 
