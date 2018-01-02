@@ -1,4 +1,5 @@
 import API from '../data/api'
+const $ = require('jQuery')
 
 const three = () => {
   return $.ajax({
