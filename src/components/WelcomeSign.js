@@ -7,8 +7,6 @@ class WelcomeSign extends Component {
   }
 }
 
-// class App extends Component {
-// 
-// }
+
 
 export default WelcomeSign
