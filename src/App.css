@@ -28,7 +28,7 @@
 }
 
 .title {
-  font-family: serif;
+  font-family: "Herculanum", fantasy;
 }
 
 .top-nav-bar{
@@ -38,18 +38,66 @@
 
 .left-justify{
   float: left;
-  margin-top: 1em;
+  margin-top: .5em;
+  margin-bottom: 1em;
   margin-left: 1em;
 }
 
 .ta-size{
-  height: 1em;
-  width: 7em;
+  margin-top: .5em;
+  height: 1.8em;
+  padding-top: .3em;
+  width: 10em;
+  background-color: #e6e6e6;
+  resize: none;
+  text-align: center;
+  border: 4px ridge white;
 }
 
 .home-walk-thru{
   margin-left: 3em
 }
+
 table, th, tr, td{
   border: 1px solid black;
+}
+
+.image-box {
+  
+}
+
+.walk-thru-row {
+}
+
+.image-display{
+  height: 120px;
+  /* width: 200px; */
+}
+
+.title-box{
+  font-size: 2em;
+}
+
+.description-box{
+  font-family: serif;
+}
+
+.categories{
+  background-color: #e6e6e6;
+  padding-top: 3px;
+  border: 4px ridge white;
+  font-family: monospace;
+}
+
+.categories-dropdown{
+  text-align: justify;
+  /* display: in-line; */
+  float: right;
+  padding-bottom: px;
+  margin-left: 10px;
+}
+
+.walk-thru-logo{
+  float:left;
+  height: 45px;
 }
