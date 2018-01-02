@@ -4,7 +4,7 @@ class TopNav extends Component {
     return(
       <div className="top-nav-bar">
         <button className="left-justify">Categories</button>
-        <textarea className="left-justify ta-size">Categories</textarea>
+        <textarea className="left-justify ta-size" placeholder="Search">  </textarea>
       </div>
     )
   }

@@ -43,5 +43,13 @@
 }
 
 .ta-size{
-  
+  height: 1em;
+  width: 7em;
+}
+
+.home-walk-thru{
+  margin-left: 3em
+}
+table, th, tr, td{
+  border: 1px solid black;
 }

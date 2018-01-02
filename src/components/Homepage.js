@@ -1,16 +1,18 @@
 import React, { Component } from "react";
 import WelcomeSign from './WelcomeSign'
 import TopNav from './TopNav'
+import HomeWT from './HomeWT'
 
-class Container extends Component {
+class Homepage extends Component {
   render(){
     return(
       <div>
         <TopNav />
         <WelcomeSign />
+        <HomeWT />
       </div>
     )
   }
 }
 
-export default Container
+export default Homepage
