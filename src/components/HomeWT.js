@@ -10,7 +10,7 @@ class HomeWT extends Component {
           <tbody>
             <tr>
               <th className="image-column"/>
-              <th>Name</th>
+              <th>Title</th>
               <th>Description</th>
             </tr>
           </tbody>

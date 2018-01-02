@@ -7,6 +7,4 @@ class WelcomeSign extends Component {
   }
 }
 
-
-
 export default WelcomeSign

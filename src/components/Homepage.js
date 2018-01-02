@@ -7,7 +7,7 @@ import BottomNav from './BottomNav.js'
 class Homepage extends Component {
   render(){
     return(
-      <div>
+      <div className='homepage'>
         <TopNav />
         <WelcomeSign />
         <HomeWT />

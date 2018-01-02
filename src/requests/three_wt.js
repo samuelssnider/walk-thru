@@ -22,13 +22,12 @@ const three = function() {
     method: 'GET',
   })
   .then(function(data) {
-    console.log(data)
     data.forEach(function(element) {
       appendWT(element)
     })
   })
   .catch(function() {
-    console.log("Failure occured")
+    console.err("Failure occured")
   })
 }
 

@@ -39,7 +39,7 @@
 
 .bottom-nav-bar{
   float: bottom;
-  height: 3em;
+  height: 2em;
   background-color: #b3ffff;
   border-top: 4px ridge white;
 }
@@ -84,10 +84,15 @@ table, th, tr, td{
 
 .title-box{
   font-size: 2em;
+  background-color: #e6e6e6;
+  opacity: .8;
 }
 
 .description-box{
   font-family: serif;
+  background-color: #e6e6e6;
+  opacity: .8;
+  
 }
 
 .categories{
@@ -108,4 +113,24 @@ table, th, tr, td{
 .walk-thru-logo{
   float:left;
   height: 40px;
+}
+
+span.email{
+  float: right;
+  size: 1em;
+  font-family: monospace;
+  margin-top: 5px;
+  margin-right: 10px
+}
+
+.github-logo {
+  margin-top: 3px;
+  height: 20px;
+  float: right;
+}
+
+.homepage {
+  background-image: url("data/staircase.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
