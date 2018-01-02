@@ -1,10 +1,13 @@
 import React, {Component} from "react";
+import CategoryBtn from './CategoryBtn';
+import AppIcon from './AppIcon'
 class TopNav extends Component {
   render(){
     return(
       <div className="top-nav-bar">
-        <button className="left-justify">Categories</button>
-        <textarea className="left-justify ta-size" placeholder="Search">  </textarea>
+        <AppIcon />
+        <CategoryBtn />
+          <textarea placeholder="search" className="left-justify ta-size"/>
       </div>
     )
   }

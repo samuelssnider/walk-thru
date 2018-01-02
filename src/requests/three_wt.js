@@ -3,10 +3,12 @@ const $ = require('jquery')
 
 var appendWT = function(element) {
   var row   = document.createElement('tr'); $(row).addClass('walk-through-row');
-  var imageBox = document.createElement('td');
-  var image = document.createElement('img'); image.src = element.image;
+  var imageBox = document.createElement('td'); $(imageBox).addClass('image-box');
+  var image = document.createElement('img'); image.src = element.image; $(image).addClass('image-display')
   var title = document.createElement('td'); title.innerText = element.title;
+  $(title).addClass('title-box')
   var description = document.createElement('td'); description.innerText = element.description;
+  $(description).addClass('description-box')
   imageBox.appendChild(image)
   row.appendChild(imageBox)
   row.appendChild(title)
