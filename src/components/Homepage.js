@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import WelcomeSign from './WelcomeSign'
 import TopNav from './TopNav'
 import HomeWT from './HomeWT'
+import BottomNav from './BottomNav.js'
 
 class Homepage extends Component {
   render(){
@@ -10,6 +11,7 @@ class Homepage extends Component {
         <TopNav />
         <WelcomeSign />
         <HomeWT />
+        <BottomNav />
       </div>
     )
   }
