@@ -144,3 +144,19 @@ span.email{
   margin-right: 100px;
   width: 10%;
 }
+
+.show-table {
+  width: 100%
+}
+
+.expand-image {
+  height: 20px;
+  width: 20px;
+  float: right;
+}
+
+.instruction-image {
+  height: 20px;
+  width: 20px;
+  float: center;
+}
