@@ -9,7 +9,7 @@ class HomeWT extends Component {
   render(){
     return(
       <div>
-      <AddButton />
+        <AddButton />
         <WTTable />
       </div>
     )

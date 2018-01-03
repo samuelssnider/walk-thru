@@ -13,7 +13,6 @@ class App extends Component {
           <Route exact path="/" component={Homepage} />
           <Route exact path="/categories" component = {CategoriesPage} />
           <Route path="/walk_thrus/:id" component = {ShowPage} />
-          
         </Switch>
       </Router>
     );

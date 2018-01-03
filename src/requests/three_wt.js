@@ -27,12 +27,14 @@ const three = function() {
     })
   })
   .catch(function() {
-    console.err("Failure occured")
+    console.log("Failure occured")
   })
 }
 
 // $(document).ready(function(){
 //   three;
 // })
+
+export { appendWT }
 
 export default three
