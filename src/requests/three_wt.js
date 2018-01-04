@@ -31,9 +31,7 @@ const three = function() {
   })
 }
 
-// $(document).ready(function(){
-//   three;
-// })
+
 
 export { appendWT }
 

@@ -4,7 +4,7 @@ class ShowBar extends Component {
   render(){
     return(
       <div className='show-bar'>
-        <table className='show-table'>
+        <table id='show-table'>
         </table>
       </div>
     )
