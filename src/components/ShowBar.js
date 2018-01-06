@@ -23,7 +23,7 @@ class ShowBar extends Component {
                   <img className='wt-image' src={step.img_source}/>
                 </td>
                  <td className='step-title'>{step.title}</td>
-                 <td>{step.description}</td>
+                 <td className='step-description'>{step.description}</td>
               </tr>
              )
     })
@@ -38,7 +38,7 @@ class ShowBar extends Component {
           <tr className="walk-thru-title">
             <td><img src={data[0].image} className='wt-image'></img></td>
             <td className='title-wt'> {data[0].title}</td>
-            <td className='description'>{data[0].description}</td>
+            <td className='description-wt'>{data[0].description}</td>
           </tr>
           {steps}
         </div>

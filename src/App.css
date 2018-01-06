@@ -89,13 +89,14 @@ table, th, tr, td{
   font-size: 2em;
   background-color: #e6e6e6;
   opacity: .8;
+  text-align: center;
 }
 
 .description-box{
   font-family: serif;
   background-color: #e6e6e6;
   opacity: .8;
-  
+  text-align: center;
 }
 
 .categories{
@@ -137,6 +138,11 @@ span.email{
   background-size: 100%;
   background-repeat: no-repeat;
 }
+.show-bar {
+  background-image: url("data/staircase.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
 
 .add-wt-image {
   display: inline-block; 
@@ -146,7 +152,7 @@ span.email{
 }
 
 #show-table {
-  width: 100%
+  width: 100%;
 }
 
 .expand-image {
@@ -167,4 +173,23 @@ span.email{
   width: 75px;
 }
 
+.step-title{
+  text-align: center;
+  vertical-align: middle;
+}
+
+.step-description{
+  text-align: center;
+  vertical-align: middle;
+}
+
+.title-wt{
+  text-align: center;
+  vertical-align: middle;
+}
+
+.description-wt{
+  text-align: center;
+  vertical-align: middle;
+}
 
