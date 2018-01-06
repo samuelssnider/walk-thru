@@ -34,12 +34,14 @@ class ShowBar extends Component {
     if(data){
       var steps = this.stepsToRender(data)
       return(
-        <tr className="walk-thru-title">
-          <td><img src={data[0].image} className='wt-image'></img></td>
-          <td className='title-wt'> {data[0].title}</td>
-          <td className='description'>{data[0].description}</td>
+        <div>
+          <tr className="walk-thru-title">
+            <td><img src={data[0].image} className='wt-image'></img></td>
+            <td className='title-wt'> {data[0].title}</td>
+            <td className='description'>{data[0].description}</td>
+          </tr>
           {steps}
-        </tr>
+        </div>
       )
     }
   }
