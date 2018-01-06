@@ -6,21 +6,52 @@ class ShowBar extends Component {
     this.state = {}
   }
   
-  componentDidMount(){
+  componentWillMount(){
     fetch(API + "/api/v1/walk_thrus/" + this.props.showId)
-    .then(function(response) {
+    .then (response  => {
       return response.json()
     })
-    .then(function(data) {
+    .then(data => {
+      this.setState({walkThrus: data})
     })
+  }
+  
+  stepsToRender(data){
+    var steps = data[0].steps.map(function(step){
+      return (<tr className={step.id}>
+                <td>
+                  <img className='wt-image' src={step.img_source}/>
+                </td>
+                 <td className='step-title'>{step.title}</td>
+                 <td>{step.description}</td>
+              </tr>
+             )
+    })
+    return steps
+  }
+  
+  appendData(data){
+    if(data){
+      var steps = this.stepsToRender(data)
+      return(
+        <tr className="walk-thru-title">
+          <td><img src={data[0].image} className='wt-image'></img></td>
+          <td className='title-wt'> {data[0].title}</td>
+          <td className='description'>{data[0].description}</td>
+          {steps}
+        </tr>
+      )
+    }
   }
   
   
   render(){
-    console.log(this)
     return(
       <div className='show-bar'>
         <table id={this.props.tableId} >
+          <tbody>
+            {this.appendData(this.state.walkThrus)}
+          </tbody>
         </table>
       </div>
     )

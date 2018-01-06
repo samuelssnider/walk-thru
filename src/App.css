@@ -145,7 +145,7 @@ span.email{
   width: 10%;
 }
 
-.show-table {
+#show-table {
   width: 100%
 }
 
@@ -160,3 +160,11 @@ span.email{
   width: 20px;
   float: center;
 }
+
+.wt-image {
+  
+  height: 75px;
+  width: 75px;
+}
+
+
