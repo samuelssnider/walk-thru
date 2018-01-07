@@ -8,7 +8,7 @@ class Steps extends Component {
   }
   
   onChildChanged(newState) {
-    this.setState( {expanded: newState})
+    this.setState({ expanded: newState })
   }
   
   render(){
@@ -20,7 +20,7 @@ class Steps extends Component {
                 </td>
                 <td className='step-title'>{step.title}</td>
                 <td className='step-description'>{step.description}
-                  <ShowExpandImage stepID={step.id} callbackParent={(newState) => this.onChildChanged(newState) } />
+                  <ShowExpandImage stepID={step.id} callbackParent={() => this.onChildChanged} />
                 </td>
               </tr>
             )
