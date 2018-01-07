@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 import API from '../data/api'
+import ShowTitle from './ShowTitle'
+import Steps from './Steps'
 class ShowBar extends Component {
   constructor(props){
     super();
@@ -16,32 +18,12 @@ class ShowBar extends Component {
     })
   }
   
-  stepsToRender(data){
-    var steps = data[0].steps.map(function(step){
-      return (<tr className={step.id}>
-                <td>
-                  <img className='wt-image' src={step.img_source}/>
-                </td>
-                 <td className='step-title'>{step.title}</td>
-                 <td className='step-description'>{step.description}</td>
-              </tr>
-             )
-    })
-    return steps
-  }
+  
   
   appendData(data){
     if(data){
-      var steps = this.stepsToRender(data)
       return(
-        <div>
-          <tr className="walk-thru-title">
-            <td><img src={data[0].image} className='wt-image'></img></td>
-            <td className='title-wt'> {data[0].title}</td>
-            <td className='description-wt'>{data[0].description}</td>
-          </tr>
-          {steps}
-        </div>
+        <ShowTitle data={data} id={this.props.tableId} />
       )
     }
   }
@@ -50,11 +32,7 @@ class ShowBar extends Component {
   render(){
     return(
       <div className='show-bar'>
-        <table id={this.props.tableId} >
-          <tbody>
-            {this.appendData(this.state.walkThrus)}
-          </tbody>
-        </table>
+        {this.appendData(this.state.walkThrus)}
       </div>
     )
   }
