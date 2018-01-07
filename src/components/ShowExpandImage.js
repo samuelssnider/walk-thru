@@ -2,14 +2,18 @@ import React, {Component} from "react";
 import expand from '../data/expand.png'
 
 class ShowExpandImage extends Component {
-  appendInstructions(stepID){
-    // this.setState({stepID: stepID})
-    debugger
+  constructor({initialExpanded }){
+    super();
+    this.state = { expanded: initialExpanded }
+  }
+  
+  onExpandClicked(stepID){
+    console.log(1)
   }
   
   render(){
     return(
-      <img className='expand-image' onClick={this.appendInstructions(this.props.stepID)} alt='expand' src={expand}></img>
+      <img className='expand-image' onClick={() => this.onExpandClicked(this.props.stepID)} alt='expand' src={expand}></img>
     )
   }
 }

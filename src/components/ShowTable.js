@@ -2,7 +2,14 @@ import React, {Component} from "react";
 import Steps from './Steps'
 class ShowTable extends Component {
   
+  constructor() {
+    super();
+    this.state = { expanded: false }
+  }
   
+  onChildChanged(newState) {
+    this.setState( {expanded: newState})
+  }
   render(){
     var data = this.props.data
     return(
@@ -14,7 +21,7 @@ class ShowTable extends Component {
             <td className='description-wt'>{data[0].description}</td>
           </tr>
         </thead>
-        <Steps data={this.props.data} />
+        <Steps data={this.props.data} callbackParent={(newState) => this.onChildChanged(newState) } />
       </table>
     ) 
   }
