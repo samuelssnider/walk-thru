@@ -2,8 +2,6 @@ import React, {Component} from "react";
 import TopNav from './TopNav'
 import BottomNav from './BottomNav'
 import ShowBar from './ShowBar'
-import axios from 'axios';
-import API from '../data/api'
 
 // import show from '../requests/show_one'
 

@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import API from '../data/api'
-import ShowTitle from './ShowTitle'
-import Steps from './Steps'
+import ShowTable from './ShowTable'
 class ShowBar extends Component {
   constructor(props){
     super();
@@ -23,7 +22,7 @@ class ShowBar extends Component {
   appendData(data){
     if(data){
       return(
-        <ShowTitle data={data} id={this.props.tableId} />
+        <ShowTable data={data} id={this.props.tableId} />
       )
     }
   }
