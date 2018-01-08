@@ -24,7 +24,6 @@ class CategoriesBar extends Component {
             <td>Title</td>
             <td>Walkthroughs</td>
           </tr>
-          <td>{this.state.categories}</td>
         </tbody>
       )
     }

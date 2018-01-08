@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import plus from '../data/plus.png'
 import API from '../data/api'
+import { Link } from 'react-router-dom'
 class WelcomeSign extends Component {
   constructor(props){
     super();
@@ -8,7 +9,8 @@ class WelcomeSign extends Component {
                    description: '',
                    image: '',
                    hideWT: false,
-                   hideStep: true}
+                   hideStep: true,
+                   instructions: []}
    this.handleTitleChange = this.handleTitleChange.bind(this);
    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
    this.handleImageChange = this.handleImageChange.bind(this);
@@ -64,7 +66,8 @@ class WelcomeSign extends Component {
   }
   
   createStep(event){
-    var bodyObject =JSON.stringify({"walk_thruID": this.state.wtData[0].id, "title": this.state.title, "description": this.state.description, "image": this.state.image })
+    debugger
+    var bodyObject =JSON.stringify({"walk_thruID": this.state.wtData[0].id, "title": this.state.title, "description": this.state.description, "image": this.state.image  })
     fetch(API + '/api/v1/steps', {
       headers: {'Content-Type': 'application/json', 'Accept': 'application/json' },
       method: 'POST',
@@ -75,6 +78,7 @@ class WelcomeSign extends Component {
   }
   
   createInstruction(event){
+    debugger
     var bodyObject =JSON.stringify({"stepID": this.state.stepData[0].id, "title": this.state.title, "description": this.state.description, "image": this.state.image })
     fetch(API + '/api/v1/steps', {
       headers: {'Content-Type': 'application/json', 'Accept': 'application/json' },
@@ -82,7 +86,7 @@ class WelcomeSign extends Component {
       body: bodyObject,
     })
     .then (response => response.json())
-    .then (response => this.setState({step: response, hideStep: true}))
+    .then (response => this.setState({step: response, instructions: (this.instructions.push(response))}))
   }
   
   addWT(event){
@@ -139,6 +143,10 @@ class WelcomeSign extends Component {
     }
   }
   
+  unhideStep(){
+    this.setState({hideStep: false})
+  }
+  
   render(){
     if(!this.state.hideWT){
       return(
@@ -158,7 +166,7 @@ class WelcomeSign extends Component {
     else if(!this.state.hideStep) {
       return(
         <div className= 'step-form'>
-        <p>Click here if you have finished your walkthrough!</p>
+        <button className='try-center'><Link to='/'>Finish Creating Your Walkthru!</Link></button>
           <form className='step-thing'>
             <input type="text" value={this.state.value} className='step-title-in my-input' placeholder= "Your Step Title Here"
                    onChange={this.handleStepTitleChange}></input> <br/>
@@ -174,7 +182,7 @@ class WelcomeSign extends Component {
     else {
       return(
         <div className= 'instruction-form'>
-        <p>Click here if this step has all its instructions entered</p>
+        <button onClick={this.state.unhideStep}>Click here if this step has all its instructions entered</button>
           <form className='instruction-thing'>
             <input type="text" value={this.state.value} className='step-title-in my-input' placeholder= "Your Instruction Title Here"
                    onChange={this.handleInstructionTitleChange}></input> <br/>
