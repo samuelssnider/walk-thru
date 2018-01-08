@@ -25,12 +25,12 @@ class ShowExpandImage extends Component {
   }
   
   onExpandClicked(){
-    if(this.state.image == expand){
+    if(this.state.image === expand){
       this.setState({image: collapse})
       var data = this.state.step
       var instructions = data[0].instructions
       var renderInstructions = instructions.map(function(instruction){
-        return(<tr>
+        return(<tr key={instruction.id}>
                  <td>{instruction.title}</td>
                  <td>{instruction.content}</td>
                </tr>
