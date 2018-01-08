@@ -16,7 +16,19 @@ class CategoriesBar extends Component {
     })
   }
   
-  appendCategories(data)
+  appendCategories(data){
+    if(data){
+      return(
+        <tbody>
+          <tr>
+            <td>Title</td>
+            <td>Walkthroughs</td>
+          </tr>
+          <td>{this.state.categories}</td>
+        </tbody>
+      )
+    }
+  }
   
   render(){
     return(

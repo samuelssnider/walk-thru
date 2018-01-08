@@ -6,11 +6,20 @@ class WelcomeSign extends Component {
     super();
     this.state = { title: '',
                    description: '',
-                   image: ''      }
+                   image: '',
+                   hideWT: false,
+                   hideStep: true}
    this.handleTitleChange = this.handleTitleChange.bind(this);
    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
    this.handleImageChange = this.handleImageChange.bind(this);
-   
+   this.handleStepTitleChange = this.handleStepTitleChange.bind(this);
+   this.handleStepDescriptionChange = this.handleStepDescriptionChange.bind(this);
+   this.handleStepImageChange = this.handleStepImageChange.bind(this);
+   this.handleInstructionTitleChange = this.handleInstructionTitleChange.bind(this);
+   this.handleInstructionDescriptionChange = this.handleInstructionDescriptionChange.bind(this);
+   this.handleInstructionImageChange = this.handleInstructionImageChange.bind(this);
+   this.addStep = this.addStep.bind(this);
+   this.addInstruction = this.addInstruction.bind(this);
    this.addWT = this.addWT.bind(this);
   }
   
@@ -23,15 +32,57 @@ class WelcomeSign extends Component {
   handleImageChange(event) {
     this.setState({image: event.target.value});
   }
+  handleStepTitleChange(event) {
+    this.setState({title: event.target.value});
+  }
+  handleStepDescriptionChange(event) {
+    this.setState({description: event.target.value});
+  }
+  handleStepImageChange(event) {
+    this.setState({image: event.target.value});
+  }
   
-  createWalkThru(){
+  handleInstructionTitleChange(event) {
+    this.setState({title: event.target.value});
+  }
+  handleInstructionDescriptionChange(event) {
+    this.setState({description: event.target.value});
+  }
+  handleInstructionImageChange(event) {
+    this.setState({image: event.target.value});
+  }
+  
+  createWalkThru(event){
+    var bodyObject =JSON.stringify({"title": this.state.title, "description": this.state.description, "image": this.state.image })
     fetch(API + '/api/v1/walk_thrus', {
+      headers: {'Content-Type': 'application/json', 'Accept': 'application/json' },
       method: 'POST',
-      body: JSON.stringify({"title": this.state.title, "description": this.state.description, "image": this.state.image }),
+      body: bodyObject,
     })
-    .then (response => {
-      return response.json()
+    .then (response => response.json())
+    .then (response => this.setState({wtData: response, hideWT: true, hideStep: false}))
+  }
+  
+  createStep(event){
+    var bodyObject =JSON.stringify({"walk_thruID": this.state.wtData[0].id, "title": this.state.title, "description": this.state.description, "image": this.state.image })
+    fetch(API + '/api/v1/steps', {
+      headers: {'Content-Type': 'application/json', 'Accept': 'application/json' },
+      method: 'POST',
+      body: bodyObject,
     })
+    .then (response => response.json())
+    .then (response => this.setState({stepData: response, hideStep: true}))
+  }
+  
+  createInstruction(event){
+    var bodyObject =JSON.stringify({"stepID": this.state.stepData[0].id, "title": this.state.title, "description": this.state.description, "image": this.state.image })
+    fetch(API + '/api/v1/steps', {
+      headers: {'Content-Type': 'application/json', 'Accept': 'application/json' },
+      method: 'POST',
+      body: bodyObject,
+    })
+    .then (response => response.json())
+    .then (response => this.setState({step: response, hideStep: true}))
   }
   
   addWT(event){
@@ -46,27 +97,97 @@ class WelcomeSign extends Component {
       passing = false
     }
     if(passing){
-      this.createWalkThru()
+      this.createWalkThru(event)
     } else{
       alert(message)
     }
-    
+  }
+  
+  addStep(event){
+    var message = "Please fill in the fields for: "
+    var passing = true
+    if(this.state.title.length === 0){
+      message += "Title "
+      passing = false
+    }
+    if(this.state.description.length === 0){
+      message += "Description"
+      passing = false
+    }
+    if(passing){
+      this.createStep(event)
+    } else{
+      alert(message)
+    }
+  }
+  
+  addInstruction(event){
+    var message = "Please fill in the fields for: "
+    var passing = true
+    if(this.state.title.length === 0){
+      message += "Title "
+      passing = false
+    }
+    if(this.state.description.length === 0){
+      message += "Description"
+      passing = false
+    }
+    if(passing){
+      this.createInstruction(event)
+    } else{
+      alert(message)
+    }
   }
   
   render(){
-    return(
-      <div className= 'wt-form'>
-        <form >
-          <input type="text" value={this.state.value} className='wt-title-in my-input' placeholder= "Your Walk Thru Title Here"
-                 onChange={this.handleTitleChange}></input> <br/>
-          <input className='wt-description-in my-input' placeholder= "Your Walk Thru Description Here"
-                 onChange={this.handleDescriptionChange}></input> <br/> 
-          <input className='wt-image-in my-input' placeholder= "Your Walk Thru Image (HTML link) Here"
-                 onChange={this.handleImageChange}></input> <br/>
-        </form>
-        <img alt="plus" onClick={this.addWT} className='create-wt-image'src={plus}/>
-      </div>
-    )
+    if(!this.state.hideWT){
+      return(
+        <div className= 'wt-form'>
+          <form className='wt-thing'>
+            <input type="text" value={this.state.value} className='wt-title-in my-input' placeholder= "Your Walk Thru Title Here"
+                   onChange={this.handleTitleChange}></input> <br/>
+            <input className='wt-description-in my-input' placeholder= "Your Walk Thru Description Here"
+                   onChange={this.handleDescriptionChange}></input> <br/> 
+            <input className='wt-image-in my-input' placeholder= "Your Walk Thru Image (HTML link) Here"
+                   onChange={this.handleImageChange}></input> <br/>
+          </form>
+          <img alt="plus" onClick={this.addWT} className='create-wt-image'src={plus}/>
+        </div>
+      )
+    }
+    else if(!this.state.hideStep) {
+      return(
+        <div className= 'step-form'>
+        <p>Click here if you have finished your walkthrough!</p>
+          <form className='step-thing'>
+            <input type="text" value={this.state.value} className='step-title-in my-input' placeholder= "Your Step Title Here"
+                   onChange={this.handleStepTitleChange}></input> <br/>
+            <input className='step-description-in my-input' placeholder= "Your Step Description Here"
+                   onChange={this.handleStepDescriptionChange}></input> <br/> 
+            <input className='step-image-in my-input' placeholder= "Your Step Image (HTML link) Here"
+                   onChange={this.handleStepImageChange}></input> <br/>
+          </form>
+          <img alt="plus" onClick={this.addStep} className='create-wt-image'src={plus}/>
+        </div>
+      )
+    }
+    else {
+      return(
+        <div className= 'instruction-form'>
+        <p>Click here if this step has all its instructions entered</p>
+          <form className='instruction-thing'>
+            <input type="text" value={this.state.value} className='step-title-in my-input' placeholder= "Your Instruction Title Here"
+                   onChange={this.handleInstructionTitleChange}></input> <br/>
+            <input className='step-description-in my-input' placeholder= "Your Instruction Description Here"
+                   onChange={this.handleInstructionDescriptionChange}></input> <br/> 
+            <input className='step-image-in my-input' placeholder= "Your Instruction Image (HTML link) Here"
+                   onChange={this.handleInstructionImageChange}></input> <br/>
+          </form>
+          
+          <img alt="plus" onClick={this.addInstruction} className='create-wt-image'src={plus}/>
+        </div>
+      )
+    }
   }
 }
 
