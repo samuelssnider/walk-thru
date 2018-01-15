@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import plus from '../data/plus.png'
 import API from '../data/api'
 import { Link } from 'react-router-dom'
-class WelcomeSign extends Component {
+class CreateBar extends Component {
   constructor(props){
     super();
     this.state = { title: '',
@@ -199,4 +199,4 @@ class WelcomeSign extends Component {
   }
 }
 
-export default WelcomeSign
+export default CreateBar
