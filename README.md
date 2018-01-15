@@ -14,3 +14,7 @@ Once you have done that, you should be all set, start up your server, then visit
 ```
 npm start
 ```
+
+
+
+If you would like to contribute, let me know by opening an issue, commenting on an issue, or submitting a PR.
