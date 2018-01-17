@@ -169,12 +169,21 @@ class CreateBar extends Component {
     }
   }
   
+  stepFinishedButton(){
+    if(this.state.hideStep){
+      return(
+        <StepFinishedButton />
+      )
+    }
+  }
+  
   render(){
     return(
       <div className= 'wt-form'>
         {this.soFar()}
         <form className='wt-thing'>
           {this.finishedButton()}
+          {this.stepFinishedButton()}
                <input ref="titleField"type="text" value={this.state.value} className='wt-title-in my-input' placeholder={this.state.currentPH +" Title"}
                  onChange={this.handleTitleChange}></input> <br/>
                <input ref="descriptionField" className='wt-description-in my-input' placeholder= {this.state.currentPH +" Description"}
@@ -186,7 +195,6 @@ class CreateBar extends Component {
       </div>
     )
     
-    //     <button onClick={this.state.unhideStep}>Click here if this step has all its instructions entered</button>
     
     // else if(!this.state.hideStep) {
     //   return(
