@@ -56,7 +56,14 @@ class CreateBar extends Component {
   //   this.setState({image: event.target.value});
   // }
   
+  clearFields(){
+    this.refs.titleField.value = ""
+    this.refs.descriptionField.value = ""
+    this.refs.imageField.value = ""
+  }
+  
   createWalkThru(event){
+    clearFields
     var bodyObject =JSON.stringify({"title": this.state.title, "description": this.state.description, "image": this.state.image })
     fetch(API + '/api/v1/walk_thrus', {
       headers: {'Content-Type': 'application/json', 'Accept': 'application/json' },
@@ -153,11 +160,11 @@ class CreateBar extends Component {
     return(
       <div className= 'wt-form'>
         <form className='wt-thing'>
-          <input type="text" value={this.state.value} className='wt-title-in my-input' placeholder={this.state.currentPH +" Title"}
+               <input ref="titleField"type="text" value={this.state.value} className='wt-title-in my-input' placeholder={this.state.currentPH +" Title"}
                  onChange={this.handleTitleChange}></input> <br/>
-               <input className='wt-description-in my-input' placeholder= {this.state.currentPH +" Description"}
+               <input ref="descriptionField" className='wt-description-in my-input' placeholder= {this.state.currentPH +" Description"}
                  onChange={this.handleDescriptionChange}></input> <br/> 
-               <input className='wt-image-in my-input' placeholder= {this.state.currentPH +" Image"}
+               <input ref="imageField"className='wt-image-in my-input' placeholder= {this.state.currentPH +" Image"}
                  onChange={this.handleImageChange}></input> <br/>
         </form>
         <img alt="plus" onClick={this.addWT} className='create-wt-image'src={plus}/>
