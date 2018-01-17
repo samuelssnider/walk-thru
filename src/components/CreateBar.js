@@ -74,29 +74,29 @@ class CreateBar extends Component {
     .then (response => this.setState({wtData: response, hideWT: true, hideStep: false, currentPH: "Step"}))
   }
   
-  // createStep(event){
-  //   debugger
-  //   var bodyObject =JSON.stringify({"walk_thruID": this.state.wtData[0].id, "title": this.state.title, "description": this.state.description, "image": this.state.image  })
-  //   fetch(API + '/api/v1/steps', {
-  //     headers: {'Content-Type': 'application/json', 'Accept': 'application/json' },
-  //     method: 'POST',
-  //     body: bodyObject,
-  //   })
-  //   .then (response => response.json())
-  //   .then (response => this.setState({stepData: response, hideStep: true}))
-  // }
-  // 
-  // createInstruction(event){
-  //   debugger
-  //   var bodyObject =JSON.stringify({"stepID": this.state.stepData[0].id, "title": this.state.title, "description": this.state.description, "image": this.state.image })
-  //   fetch(API + '/api/v1/steps', {
-  //     headers: {'Content-Type': 'application/json', 'Accept': 'application/json' },
-  //     method: 'POST',
-  //     body: bodyObject,
-  //   })
-  //   .then (response => response.json())
-  //   .then (response => this.setState({step: response, instructions: (this.instructions.push(response))}))
-  // }
+  createStep(event){
+    debugger
+    var bodyObject =JSON.stringify({"walk_thruID": this.state.wtData[0].id, "title": this.state.title, "description": this.state.description, "image": this.state.image  })
+    fetch(API + '/api/v1/steps', {
+      headers: {'Content-Type': 'application/json', 'Accept': 'application/json' },
+      method: 'POST',
+      body: bodyObject,
+    })
+    .then (response => response.json())
+    .then (response => this.setState({stepData: response, hideStep: true}))
+  }
+  
+  createInstruction(event){
+    debugger
+    var bodyObject =JSON.stringify({"stepID": this.state.stepData[0].id, "title": this.state.title, "description": this.state.description, "image": this.state.image })
+    fetch(API + '/api/v1/steps', {
+      headers: {'Content-Type': 'application/json', 'Accept': 'application/json' },
+      method: 'POST',
+      body: bodyObject,
+    })
+    .then (response => response.json())
+    .then (response => this.setState({step: response, instructions: (this.instructions.push(response))}))
+  }
   
   addWT(event){
     var message = "Please fill in the fields for: "
@@ -110,47 +110,53 @@ class CreateBar extends Component {
       passing = false
     }
     if(passing){
-      this.createWalkThru(event)
+      if(this.state.hideWT === false){
+        this.createWalkThru(event)
+      } else if (this.state.hideStep === false){
+        this.createStep(event)
+      } else {
+        this.createInstruction(event)
+      }
     } else{
       alert(message)
     }
   }
   
-  addStep(event){
-    var message = "Please fill in the fields for: "
-    var passing = true
-    if(this.state.title.length === 0){
-      message += "Title "
-      passing = false
-    }
-    if(this.state.description.length === 0){
-      message += "Description"
-      passing = false
-    }
-    if(passing){
-      this.createStep(event)
-    } else{
-      alert(message)
-    }
-  }
-  
-  addInstruction(event){
-    var message = "Please fill in the fields for: "
-    var passing = true
-    if(this.state.title.length === 0){
-      message += "Title "
-      passing = false
-    }
-    if(this.state.description.length === 0){
-      message += "Description"
-      passing = false
-    }
-    if(passing){
-      this.createInstruction(event)
-    } else{
-      alert(message)
-    }
-  }
+  // addStep(event){
+  //   var message = "Please fill in the fields for: "
+  //   var passing = true
+  //   if(this.state.title.length === 0){
+  //     message += "Title "
+  //     passing = false
+  //   }
+  //   if(this.state.description.length === 0){
+  //     message += "Description"
+  //     passing = false
+  //   }
+  //   if(passing){
+  //     this.createStep(event)
+  //   } else{
+  //     alert(message)
+  //   }
+  // }
+  // 
+  // addInstruction(event){
+  //   var message = "Please fill in the fields for: "
+  //   var passing = true
+  //   if(this.state.title.length === 0){
+  //     message += "Title "
+  //     passing = false
+  //   }
+  //   if(this.state.description.length === 0){
+  //     message += "Description"
+  //     passing = false
+  //   }
+  //   if(passing){
+  //     this.createInstruction(event)
+  //   } else{
+  //     alert(message)
+  //   }
+  // }
   
   unhideStep(){
     this.setState({hideStep: false})
