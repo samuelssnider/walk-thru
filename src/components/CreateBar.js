@@ -10,6 +10,7 @@ class CreateBar extends Component {
                    image: '',
                    hideWT: false,
                    hideStep: true,
+                   steps: [],
                    instructions: [],
                    currentPH: "Walk Thru"
                    }
@@ -154,6 +155,12 @@ class CreateBar extends Component {
     this.setState({hideStep: false})
   }
   
+  soFar(){
+    var stepTitles = this.state.steps.map(function(step) {
+      this.state.wtData[0].id
+    })
+  }
+  
   finishedButton(){
     if(this.state.hideWT){
       return(
@@ -165,8 +172,9 @@ class CreateBar extends Component {
   render(){
     return(
       <div className= 'wt-form'>
+        {this.soFar()}
         <form className='wt-thing'>
-          {this.finishedButton}
+          {this.finishedButton()}
                <input ref="titleField"type="text" value={this.state.value} className='wt-title-in my-input' placeholder={this.state.currentPH +" Title"}
                  onChange={this.handleTitleChange}></input> <br/>
                <input ref="descriptionField" className='wt-description-in my-input' placeholder= {this.state.currentPH +" Description"}
