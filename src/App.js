@@ -10,8 +10,6 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-          <script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react.min.js'></script>
-          <script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react-dom.min.js'></script>
           <Route exact path="/" component={Homepage} />
           <Route exact path="/categories" component = {CategoriesPage} />
           <Route path="/walk_thrus/:id" component = {ShowPage} />
