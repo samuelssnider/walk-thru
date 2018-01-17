@@ -11,9 +11,7 @@ class CreateBar extends Component {
                    hideWT: false,
                    hideStep: true,
                    instructions: [],
-                   titlePH: "Walk Thru",
-                   descriptionPH: "Walk Thru",
-                   imagePH: "Walk Thru"
+                   currentPH: "Walk Thru"
                    }
    this.handleTitleChange = this.handleTitleChange.bind(this);
    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
@@ -66,7 +64,7 @@ class CreateBar extends Component {
       body: bodyObject,
     })
     .then (response => response.json())
-    .then (response => this.setState({wtData: response, hideWT: true, hideStep: false}))
+    .then (response => this.setState({wtData: response, hideWT: true, hideStep: false, currentPH: "Step"}))
   }
   
   // createStep(event){
@@ -152,21 +150,19 @@ class CreateBar extends Component {
   }
   
   render(){
-    if(!this.state.hideWT){
-      return(
-        <div className= 'wt-form'>
-          <form className='wt-thing'>
-            <input type="text" value={this.state.value} className='wt-title-in my-input' placeholder={this.state.titlePH +" Title"}
-                   onChange={this.handleTitleChange}></input> <br/>
-                 <input className='wt-description-in my-input' placeholder= {this.state.descriptionPH +" Description"}
-                   onChange={this.handleDescriptionChange}></input> <br/> 
-                 <input className='wt-image-in my-input' placeholder= {this.state.imagePH +" Image"}
-                   onChange={this.handleImageChange}></input> <br/>
-          </form>
-          <img alt="plus" onClick={this.addWT} className='create-wt-image'src={plus}/>
-        </div>
-      )
-    }
+    return(
+      <div className= 'wt-form'>
+        <form className='wt-thing'>
+          <input type="text" value={this.state.value} className='wt-title-in my-input' placeholder={this.state.currentPH +" Title"}
+                 onChange={this.handleTitleChange}></input> <br/>
+               <input className='wt-description-in my-input' placeholder= {this.state.currentPH +" Description"}
+                 onChange={this.handleDescriptionChange}></input> <br/> 
+               <input className='wt-image-in my-input' placeholder= {this.state.currentPH +" Image"}
+                 onChange={this.handleImageChange}></input> <br/>
+        </form>
+        <img alt="plus" onClick={this.addWT} className='create-wt-image'src={plus}/>
+      </div>
+    )
     // else if(!this.state.hideStep) {
     //   return(
     //     <div className= 'step-form'>
