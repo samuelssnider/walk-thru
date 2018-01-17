@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import plus from '../data/plus.png'
 import API from '../data/api'
-import { Link } from 'react-router-dom'
+import FinishedButton from './FinishedButton'
 class CreateBar extends Component {
   constructor(props){
     super();
@@ -16,14 +16,6 @@ class CreateBar extends Component {
    this.handleTitleChange = this.handleTitleChange.bind(this);
    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
    this.handleImageChange = this.handleImageChange.bind(this);
-   // this.handleStepTitleChange = this.handleStepTitleChange.bind(this);
-   // this.handleStepDescriptionChange = this.handleStepDescriptionChange.bind(this);
-   // this.handleStepImageChange = this.handleStepImageChange.bind(this);
-   // this.handleInstructionTitleChange = this.handleInstructionTitleChange.bind(this);
-   // this.handleInstructionDescriptionChange = this.handleInstructionDescriptionChange.bind(this);
-   // this.handleInstructionImageChange = this.handleInstructionImageChange.bind(this);
-   // this.addStep = this.addStep.bind(this);
-   // this.addInstruction = this.addInstruction.bind(this);
    this.addWT = this.addWT.bind(this);
   }
   
@@ -56,14 +48,14 @@ class CreateBar extends Component {
   //   this.setState({image: event.target.value});
   // }
   
-  clearFields(){
+  clearFields(event){
     this.refs.titleField.value = ""
     this.refs.descriptionField.value = ""
     this.refs.imageField.value = ""
   }
   
   createWalkThru(event){
-    clearFields
+    this.clearFields(event)
     var bodyObject =JSON.stringify({"title": this.state.title, "description": this.state.description, "image": this.state.image })
     fetch(API + '/api/v1/walk_thrus', {
       headers: {'Content-Type': 'application/json', 'Accept': 'application/json' },
@@ -75,7 +67,7 @@ class CreateBar extends Component {
   }
   
   createStep(event){
-    debugger
+    this.clearFields(event)
     var bodyObject =JSON.stringify({"walk_thruID": this.state.wtData[0].id, "title": this.state.title, "description": this.state.description, "image": this.state.image  })
     fetch(API + '/api/v1/steps', {
       headers: {'Content-Type': 'application/json', 'Accept': 'application/json' },
@@ -83,11 +75,11 @@ class CreateBar extends Component {
       body: bodyObject,
     })
     .then (response => response.json())
-    .then (response => this.setState({stepData: response, hideStep: true}))
+    .then (response => this.setState({stepData: response, currentPH: "Instruction", hideStep: true}))
   }
   
   createInstruction(event){
-    debugger
+    this.clearFeilds(event)
     var bodyObject =JSON.stringify({"stepID": this.state.stepData[0].id, "title": this.state.title, "description": this.state.description, "image": this.state.image })
     fetch(API + '/api/v1/steps', {
       headers: {'Content-Type': 'application/json', 'Accept': 'application/json' },
@@ -162,10 +154,19 @@ class CreateBar extends Component {
     this.setState({hideStep: false})
   }
   
+  finishedButton(){
+    if(this.state.hideWT){
+      return(
+        <FinishedButton />
+      )
+    }
+  }
+  
   render(){
     return(
       <div className= 'wt-form'>
         <form className='wt-thing'>
+          {this.finishedButton}
                <input ref="titleField"type="text" value={this.state.value} className='wt-title-in my-input' placeholder={this.state.currentPH +" Title"}
                  onChange={this.handleTitleChange}></input> <br/>
                <input ref="descriptionField" className='wt-description-in my-input' placeholder= {this.state.currentPH +" Description"}
@@ -176,10 +177,13 @@ class CreateBar extends Component {
         <img alt="plus" onClick={this.addWT} className='create-wt-image'src={plus}/>
       </div>
     )
+    
+    //     <button onClick={this.state.unhideStep}>Click here if this step has all its instructions entered</button>
+    
     // else if(!this.state.hideStep) {
     //   return(
     //     <div className= 'step-form'>
-    //     <button className='try-center'><Link to='/'>Finish Creating Your Walkthru!</Link></button>
+    //    
     //       <form className='step-thing'>
     //         <input type="text" value={this.state.value} className='step-title-in my-input' placeholder= "Your Step Title Here"
     //                onChange={this.handleStepTitleChange}></input> <br/>
@@ -195,7 +199,6 @@ class CreateBar extends Component {
     // else {
     //   return(
     //     <div className= 'instruction-form'>
-    //     <button onClick={this.state.unhideStep}>Click here if this step has all its instructions entered</button>
     //       <form className='instruction-thing'>
     //         <input type="text" value={this.state.value} className='step-title-in my-input' placeholder= "Your Instruction Title Here"
     //                onChange={this.handleInstructionTitleChange}></input> <br/>
