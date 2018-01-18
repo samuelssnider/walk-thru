@@ -2,15 +2,23 @@ import React, {Component} from "react";
 import Steps from './Steps'
 import edit from '../data/Edit.png'
 import del from '../data/delete.png'
+import API from '../data/api'
 class ShowTable extends Component {
   
   constructor() {
     super();
     this.state = { expanded: false }
+    this.deleteWT = this.deleteWT.bind(this)
   }
   
   deleteWT(event){
-    alert("Are you sure you want to delete this walkthrough")
+    fetch(API + "/api/v1/walk_thrus/" + this.props.wtID, {
+      method: "DELETE"
+    })
+    .then (response  => {
+      debugger
+      event.target.hide()
+    })
   }
   
   onChildChanged(newState) {
