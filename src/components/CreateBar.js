@@ -18,6 +18,7 @@ class CreateBar extends Component {
    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
    this.handleImageChange = this.handleImageChange.bind(this);
    this.addWT = this.addWT.bind(this);
+   this.unhideStep = this.unhideStep.bind(this);
   }
   
   handleTitleChange(event) {
@@ -80,15 +81,15 @@ class CreateBar extends Component {
   }
   
   createInstruction(event){
-    this.clearFeilds(event)
-    var bodyObject =JSON.stringify({"stepID": this.state.stepData[0].id, "title": this.state.title, "description": this.state.description, "image": this.state.image })
-    fetch(API + '/api/v1/steps', {
+    this.clearFields(event)
+    var bodyObject =JSON.stringify({"stepID": this.state.stepData[0].id, "title": this.state.title, "content": this.state.description, "image": this.state.image })
+    fetch(API + '/api/v1/instructions' , {
       headers: {'Content-Type': 'application/json', 'Accept': 'application/json' },
       method: 'POST',
       body: bodyObject,
     })
     .then (response => response.json())
-    .then (response => this.setState({step: response, instructions: (this.instructions.push(response))}))
+    .then (response => this.setState({step: response, instructions: (this.state.instructions.push(response))}))
   }
   
   addWT(event){
@@ -152,7 +153,7 @@ class CreateBar extends Component {
   // }
   
   unhideStep(){
-    this.setState({hideStep: false})
+    this.setState({hideStep: false, currentPH: "Step"})
   }
   
   soFar(){
@@ -170,9 +171,9 @@ class CreateBar extends Component {
   }
   
   stepFinishedButton(){
-    if(this.state.hideStep){
+    if(this.state.hideStep && this.state.hideWT){
       return(
-            <button onClick={this.state.unhideStep}>Click here if this step has all its instructions entered</button>
+            <button onClick={this.unhideStep}>Click here if this step has all its instructions entered</button>
       )
     }
   }
@@ -181,8 +182,9 @@ class CreateBar extends Component {
     return(
       <div className= 'wt-form'>
         {this.soFar()}
+        {this.finishedButton()}
+        {this.stepFinishedButton()}
         <form className='wt-thing'>
-          {this.finishedButton()}
                <input ref="titleField"type="text" value={this.state.value} className='wt-title-in my-input' placeholder={this.state.currentPH +" Title"}
                  onChange={this.handleTitleChange}></input> <br/>
                <input ref="descriptionField" className='wt-description-in my-input' placeholder= {this.state.currentPH +" Description"}
