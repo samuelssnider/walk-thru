@@ -15,10 +15,10 @@ class ShowTable extends Component {
     fetch(API + "/api/v1/walk_thrus/" + this.props.wtID, {
       method: "DELETE"
     })
-    .then (response  => {
-      debugger
-      event.target.hide()
-    })
+    // .then (response  => {
+    //   debugger
+    //   this.refs.table.hide()
+    // })
   }
   
   onChildChanged(newState) {
@@ -27,7 +27,7 @@ class ShowTable extends Component {
   render(){
     var data = this.props.data
     return(
-      <table id={this.props.id}>
+      <table ref='table'id={this.props.id}>
         <thead>
           <tr className="walk-thru-title">
             <td><img src={data[0].image} alt={data[0].title} className='wt-image'></img></td>
