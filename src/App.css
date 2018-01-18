@@ -236,3 +236,18 @@ span.email{
   margin-left: 250px;
 }
 
+.wt-edit-image{
+  height: 20px;
+  width: 20px;
+  float: right;
+  margin-right: 15px;
+}
+
+.wt-delete-image{
+  height: 20px;
+  width: 20px;
+  float: right;
+  margin-right: 15px;
+}
+
+
