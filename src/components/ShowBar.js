@@ -22,7 +22,7 @@ class ShowBar extends Component {
   appendData(data){
     if(data){
       return(
-        <ShowTable data={data} id={this.props.tableId} />
+        <ShowTable data={data}  wtID={this.props.showId} id={this.props.tableId} />
       )
     }
   }
