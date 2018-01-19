@@ -1,2 +1,2 @@
-var API = "http://localhost:3000"
+var API = "https://safe-waters-36361.herokuapp.com/"
 export default API
