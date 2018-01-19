@@ -13,12 +13,12 @@ class ShowTable extends Component {
   
   deleteWT(event){
     fetch(API + "/api/v1/walk_thrus/" + this.props.wtID, {
+      headers: {'Content-Type': 'application/json', 'Accept': 'application/json' },
       method: "DELETE"
     })
-    // .then (response  => {
-    //   debugger
-    //   this.refs.table.hide()
-    // })
+    .then (response  => {
+      debugger
+    })
   }
   
   onChildChanged(newState) {
