@@ -17,7 +17,6 @@ class ShowTable extends Component {
       method: "DELETE"
     })
     .then (response  => {
-      debugger
     })
   }
   
